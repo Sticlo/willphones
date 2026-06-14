@@ -2,9 +2,9 @@
 <div class="landing-container">
 
   <!-- ══════ NAVBAR ══════ -->
-  <header class="navbar">
+  <header class="navbar" [class.menu-open]="menuOpen()">
     <div class="navbar-wrapper">
-      <a routerLink="/" class="logo">
+      <a routerLink="/" class="logo" (click)="closeMenu()">
         <svg class="logo-icon" width="26" height="26" viewBox="0 0 24 24" fill="none">
           <path d="M17 2H7C5.9 2 5 2.9 5 4v16c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"
                 stroke="#0047E0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -14,17 +14,32 @@
         <span class="logo-text">Willphone's</span>
       </a>
 
-      <nav class="nav-menu">
-        <a routerLink="/" fragment="inicio" class="nav-link">Inicio</a>
-        <a routerLink="/audifonos" class="nav-link" routerLinkActive="active">Audífonos</a>
-        <a routerLink="/cargadores" class="nav-link" routerLinkActive="active">Cargadores</a>
-        <a routerLink="/teclados" class="nav-link" routerLinkActive="active">Teclados</a>
-        <a routerLink="/" fragment="accesorios" class="nav-link">Accesorios</a>
-        <a routerLink="/" fragment="servicios" class="nav-link">Reparaciones</a>
-        <a routerLink="/" fragment="contacto" class="nav-link">Contacto</a>
+      <div
+        class="nav-backdrop"
+        [class.active]="menuOpen()"
+        (click)="closeMenu()"
+        aria-hidden="true"
+      ></div>
+
+      <nav id="mobile-nav" class="nav-menu" [class.active]="menuOpen()" aria-label="Menú principal">
+        <p class="nav-menu__label">Menú</p>
+        @for (item of navItems; track item.label) {
+          <a
+            [routerLink]="item.route"
+            [fragment]="item.fragment"
+            class="nav-link"
+            [class.active]="isNavActive(item)"
+            (click)="onNavClick($event, item)"
+          >{{ item.label }}</a>
+        }
+        <div class="nav-menu__footer">
+          <a [href]="whatsappLink()" target="_blank" rel="noopener" class="btn btn-blue btn-sm nav-menu__cta">
+            Cotizar al por mayor
+          </a>
+        </div>
       </nav>
 
-      <div class="nav-cta">
+      <div class="navbar-actions">
         <button type="button" class="cart-nav-btn" (click)="cart.toggle()" aria-label="Abrir carrito">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
@@ -34,12 +49,19 @@
             <span class="cart-nav-btn__badge">{{ cart.count() }}</span>
           }
         </button>
-        <a [href]="whatsappLink()" target="_blank" class="btn btn-blue btn-sm">Cotizar al por mayor</a>
+        <a [href]="whatsappLink()" target="_blank" class="btn btn-blue btn-sm nav-cta__whatsapp">Cotizar al por mayor</a>
+        <button
+          type="button"
+          class="mobile-toggle"
+          [class.active]="menuOpen()"
+          [attr.aria-expanded]="menuOpen()"
+          aria-controls="mobile-nav"
+          aria-label="Menú de navegación"
+          (click)="toggleMenu()"
+        >
+          <span></span><span></span><span></span>
+        </button>
       </div>
-      <button class="mobile-toggle" aria-label="Menu"
-              onclick="document.querySelector('.nav-menu')?.classList.toggle('active')">
-        <span></span><span></span><span></span>
-      </button>
     </div>
   </header>
 

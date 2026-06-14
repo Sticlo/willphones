@@ -46,6 +46,11 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+
+  &.nav-open {
+    overflow: hidden;
+    touch-action: none;
+  }
 }
 
 ::-webkit-scrollbar { width: 6px; }
