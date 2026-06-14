@@ -3,11 +3,7 @@
   "version": 1,
   "cli": {
     "packageManager": "npm",
-<<<<<<< HEAD
-    "analytics": "72d6f2f2-de48-4ef3-88f1-8a854fd72a4c"
-=======
     "analytics": false
->>>>>>> santiago
   },
   "newProjectRoot": "projects",
   "projects": {

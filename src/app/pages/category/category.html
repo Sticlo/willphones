@@ -1,0 +1,94 @@
+<section
+  class="category-page"
+  [class.category-page--orange]="config().theme === 'orange'"
+  [class.category-page--blue]="config().theme === 'blue'"
+  [class.category-page--black]="config().theme === 'black'">
+  <div class="category-hero">
+    <div class="container">
+      <a routerLink="/" class="back-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Volver al inicio
+      </a>
+
+      <span class="eyebrow">{{ config().eyebrow }}</span>
+      <h1 class="display-title size-lg">{{ config().title }}</h1>
+      <p class="body-lead">{{ config().subtitle }}</p>
+
+      <div class="volume-table-wrap">
+        <p class="volume-table__title">Precios por volumen</p>
+        <div class="volume-table">
+          @for (tier of volumeTiers; track tier.label) {
+            <div class="volume-table__col">
+              <span class="volume-table__qty">{{ tier.label }}</span>
+              <span class="volume-table__disc">{{ tierDiscountLabel(tier) }}</span>
+            </div>
+          }
+        </div>
+      </div>
+
+      <div class="category-meta">
+        <span class="category-count">
+          <strong>{{ config().items.length }}</strong> referencias · mínimo <strong>{{ wholesaleMinUnits }} uds</strong>
+        </span>
+        <div class="category-meta__actions">
+          <button type="button" class="btn btn-outline-blue btn-sm" (click)="downloadPriceList()">
+            Descargar lista de precios
+          </button>
+          <button type="button" class="btn btn-blue btn-sm" (click)="cart.open()">
+            Cotizar pedido ({{ cart.count() }})
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container category-body">
+    <div class="gallery-grid">
+      @for (item of config().items; track item.id) {
+        <article class="gallery-card">
+          <div class="gallery-card__image-wrap">
+            <img [src]="item.image" [alt]="item.name" loading="lazy" class="gallery-card__image">
+          </div>
+          <div class="gallery-card__info">
+            <h2 class="gallery-card__name">{{ item.name }}</h2>
+            <p class="gallery-card__price">
+              {{ formatWholesalePrice(item.price) }}
+              <span class="gallery-card__badge">6+ uds</span>
+            </p>
+            <ul class="gallery-card__tiers">
+              @for (tier of volumeTiers; track tier.label) {
+                <li>
+                  <span>{{ tier.label }}</span>
+                  <strong>{{ tierPriceLabel(item.price, tier) }}</strong>
+                </li>
+              }
+            </ul>
+            <div class="gallery-card__actions">
+              <button
+                type="button"
+                class="gallery-card__buy"
+                [class.gallery-card__buy--added]="cart.isInCart(item.id)"
+                (click)="cart.add(item)">
+                @if (cart.isInCart(item.id)) {
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                  En pedido ({{ cart.quantityOf(item.id) }})
+                  @if (discountForQty(cart.quantityOf(item.id)); as disc) {
+                    <span class="gallery-card__tier-tag">{{ disc }}</span>
+                  }
+                } @else {
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                  Agregar al pedido
+                }
+              </button>
+              <a [href]="whatsappFor(item.name)" target="_blank" class="gallery-card__cta">
+                Cotizar
+              </a>
+            </div>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>
