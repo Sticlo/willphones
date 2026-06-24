@@ -6,6 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "build:pages": "ng build --configuration production",
+    "build:cf": "ng build && wrangler pages deploy",
     "pages:deploy": "wrangler pages deploy",
     "deploy:pages": "npm run build:pages && npm run pages:deploy",
     "watch": "ng build --watch --configuration development",
@@ -37,6 +38,6 @@
     "prettier": "^3.8.1",
     "typescript": "~5.9.2",
     "vitest": "^4.0.8",
-    "wrangler": "^4.86.0"
+    "wrangler": "3.114.15"
   }
 }
