@@ -1,3 +1,7 @@
 name = "willphones"
+account_id = "d094b1e576f12c31048d8662403a5dc5"
 compatibility_date = "2024-11-01"
-pages_build_output_dir = "./dist/willphones/browser"
+
+[assets]
+directory = "./dist/willphones/browser"
+not_found_handling = "single-page-application"
