@@ -251,20 +251,11 @@
   background: var(--white);
 }
 
-.cart-panel__total {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: .9rem;
+.cart-panel__hint {
+  font-size: .82rem;
   color: var(--gray-500);
-
-  strong {
-    font-family: var(--font-title);
-    font-size: 1.35rem;
-    font-weight: 900;
-    color: var(--black);
-    letter-spacing: -.5px;
-  }
+  line-height: 1.45;
+  text-align: center;
 }
 
 .cart-panel__checkout {

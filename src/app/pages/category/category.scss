@@ -192,27 +192,10 @@
   gap: .5rem;
 }
 
-.gallery-card__price {
-  display: flex;
-  align-items: center;
-  gap: .5rem;
-  flex-wrap: wrap;
-  font-family: var(--font-title);
-  font-size: 1rem;
-  font-weight: 900;
-  color: var(--blue);
-  letter-spacing: -.3px;
-}
-
-.gallery-card__badge {
-  font-size: .58rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  padding: .15rem .5rem;
-  border-radius: 100px;
-  background: var(--orange-light);
-  color: var(--orange);
+.gallery-card__note {
+  font-size: .82rem;
+  color: var(--gray-500);
+  font-weight: 600;
 }
 
 .gallery-card__actions {
@@ -227,24 +210,23 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  flex: 1;
-  justify-content: center;
   padding: .55rem .85rem;
-  border: none;
+  border: 1.5px solid var(--gray-200);
   border-radius: var(--r-sm);
-  background: var(--blue);
-  color: #fff;
+  background: var(--white);
+  color: var(--black);
   font-size: .75rem;
   font-weight: 800;
   cursor: pointer;
   transition: all .22s var(--ease);
   white-space: nowrap;
 
-  &:hover { background: var(--blue-hover); transform: translateY(-1px); }
+  &:hover { border-color: var(--blue); color: var(--blue); }
 
   &--added {
-    background: #22C55E;
-    &:hover { background: #16a34a; }
+    background: var(--blue-light);
+    border-color: var(--blue);
+    color: var(--blue);
   }
 }
 
@@ -259,19 +241,32 @@
 .gallery-card__cta {
   display: inline-flex;
   align-items: center;
-  padding: .55rem .75rem;
-  font-size: .72rem;
+  gap: 6px;
+  padding: .55rem .85rem;
+  font-size: .75rem;
   font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: .5px;
   color: var(--gray-500);
   border: 1.5px solid var(--gray-200);
   border-radius: var(--r-sm);
   transition: all .2s var(--ease);
+  flex: 1;
+  justify-content: center;
 
   &:hover {
     color: var(--blue);
     border-color: var(--blue);
+  }
+
+  &--primary {
+    background: #25D366;
+    border-color: #25D366;
+    color: #fff;
+
+    &:hover {
+      background: #1ebe5d;
+      border-color: #1ebe5d;
+      color: #fff;
+    }
   }
 }
 

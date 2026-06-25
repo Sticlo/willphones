@@ -1,17 +1,10 @@
 import { Injectable, computed, signal } from '@angular/core';
-import { CatalogItem, formatPrice } from '../data/catalog';
-import {
-  getLineSubtotal,
-  getUnitPrice,
-  getVolumeTier,
-  tierDiscountLabel,
-} from './pricing';
+import { CatalogItem } from '../data/catalog';
 import { whatsappLink } from './site.config';
 
 export interface CartLine {
   id: string;
   name: string;
-  basePrice: number;
   image: string;
   quantity: number;
 }
@@ -27,27 +20,7 @@ export class CartService {
     this.lines().reduce((sum, line) => sum + line.quantity, 0)
   );
 
-  public readonly total = computed(() =>
-    this.lines().reduce((sum, line) => sum + this.lineSubtotal(line), 0)
-  );
-
   public readonly whatsappCheckout = computed(() => whatsappLink(this.buildMessage()));
-
-  public lineUnitPrice(line: CartLine): number {
-    return getUnitPrice(line.basePrice, line.quantity);
-  }
-
-  public lineSubtotal(line: CartLine): number {
-    return getLineSubtotal(line.basePrice, line.quantity);
-  }
-
-  public lineTierLabel(line: CartLine): string {
-    return getVolumeTier(line.quantity).label;
-  }
-
-  public lineDiscountLabel(line: CartLine): string {
-    return tierDiscountLabel(getVolumeTier(line.quantity));
-  }
 
   public open(): void {
     this.isOpen.set(true);
@@ -85,7 +58,6 @@ export class CartService {
         {
           id: item.id,
           name: item.name,
-          basePrice: item.price,
           image: item.image,
           quantity: 1,
         },
@@ -125,17 +97,11 @@ export class CartService {
     const lines = this.lines();
 
     if (lines.length === 0) {
-      return "Hola Willphone's! Me gustaría información sobre sus productos.";
+      return "Hola Willphone's! Me gustaría información sobre sus productos al por mayor.";
     }
 
     const detail = lines
-      .map(line => {
-        const unit = this.lineUnitPrice(line);
-        const subtotal = this.lineSubtotal(line);
-        const tier = this.lineTierLabel(line);
-        const discount = this.lineDiscountLabel(line);
-        return `• ${line.name} x${line.quantity} uds — ${formatPrice(subtotal)} (${formatPrice(unit)} c/u · ${tier}${discount !== 'Precio base' ? ' · ' + discount : ''})`;
-      })
+      .map(line => `• ${line.name} x${line.quantity} uds`)
       .join('\n');
 
     return [
@@ -143,9 +109,7 @@ export class CartService {
       '',
       detail,
       '',
-      `*Total referencia mayorista: ${formatPrice(this.total())}*`,
-      '',
-      '¿Me confirman precio final por volumen, disponibilidad y formas de pago? Gracias.',
+      '¿Me pueden enviar precios, disponibilidad y formas de pago? Gracias.',
     ].join('\n');
   }
 }

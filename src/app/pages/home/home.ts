@@ -1,7 +1,6 @@
-import { Component, signal, computed, inject } from '@angular/core';
+import { Component, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { PriceListService } from '../../core/price-list.service';
 import { SITE_CONFIG, whatsappLink } from '../../core/site.config';
 
 interface TechService {
@@ -30,8 +29,6 @@ interface Fact {
   styleUrl: './home.scss',
 })
 export class HomeComponent {
-  private readonly priceList = inject(PriceListService);
-
   public readonly whatsappNumber = SITE_CONFIG.whatsappNumber;
   public readonly facebookUrl    = SITE_CONFIG.facebookUrl;
   public readonly instagramUrl   = SITE_CONFIG.instagramUrl;
@@ -39,11 +36,11 @@ export class HomeComponent {
 
   public readonly facts: Fact[] = [
     { text: 'Comprar al por mayor te permite obtener mejores márgenes al revender audífonos y cargadores en tu tienda.', category: 'Mayorista' },
-    { text: 'Los pedidos desde 6 unidades acceden a precios especiales por volumen en la mayoría de referencias.', category: 'Mayorista' },
+    { text: 'Los pedidos desde 6 unidades tienen condiciones especiales — consúltanos por WhatsApp.', category: 'Mayorista' },
     { text: 'Un cargador de 65W es uno de los accesorios más vendidos al por mayor por su alta rotación.', category: 'Carga' },
     { text: 'Los audífonos Bluetooth tienen demanda constante — ideal para surtir vitrinas y mostradores.', category: 'Audio' },
     { text: 'Trabajamos con tiendas, técnicos celulares y distribuidores en todo el país.', category: 'Mayorista' },
-    { text: 'Puedes armar tu pedido en el carrito y recibir la cotización completa por WhatsApp al instante.', category: 'Mayorista' },
+    { text: 'Puedes armar tu pedido en el carrito y enviar la lista completa por WhatsApp para cotizar.', category: 'Mayorista' },
   ];
 
   public activeFact = signal<number>(0);
@@ -102,15 +99,11 @@ export class HomeComponent {
   ]);
 
   public readonly benefits = signal<Benefit[]>([
-    { title: 'Precios Mayoristas', description: 'Tarifas especiales por volumen para tiendas, técnicos y distribuidores.', iconName: 'dollar' },
+    { title: 'Cotización Directa', description: 'Sin precios en la web — te cotizamos personalizado por WhatsApp.', iconName: 'dollar' },
     { title: 'Stock Disponible', description: 'Referencias de alta rotación listas para surtir tu negocio sin esperas.', iconName: 'shield' },
-    { title: 'Pedidos por Volumen', description: 'Desde 6 unidades con descuentos progresivos según la cantidad.', iconName: 'zap' },
+    { title: 'Pedidos por Volumen', description: 'Desde 6 unidades. Cuéntanos la cantidad y te enviamos la mejor cotización.', iconName: 'zap' },
     { title: 'Catálogo Amplio', description: 'Audífonos, cargadores, teclados y accesorios para revender.', iconName: 'cpu' },
-    { title: 'Cotización Rápida', description: 'Arma tu pedido en el carrito y recibe precios al instante por WhatsApp.', iconName: 'smile' },
+    { title: 'Cotización Rápida', description: 'Arma tu pedido en el carrito y envíalo por WhatsApp en un clic.', iconName: 'smile' },
     { title: 'Servicio Técnico', description: 'También reparamos equipos — ideal si tienes taller o tienda de celulares.', iconName: 'award' },
   ]);
-
-  public downloadPriceList(): void {
-    this.priceList.downloadCsv();
-  }
 }
