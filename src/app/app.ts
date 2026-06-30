@@ -1,5 +1,6 @@
 import { Component, computed, HostListener, inject, signal } from '@angular/core';
-import { Router, RouterLink, RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
+import { filter } from 'rxjs';
 import { CartService } from './core/cart.service';
 import { SITE_CONFIG, phoneLink, whatsappLink } from './core/site.config';
 import { CartPanelComponent } from './shared/cart-panel/cart-panel';
@@ -20,6 +21,7 @@ export class App {
 
   public readonly cart = inject(CartService);
   public readonly menuOpen = signal(false);
+  public readonly isCatalogRoute = signal(false);
   public readonly whatsappNumber = SITE_CONFIG.whatsappNumber;
   public readonly facebookUrl = SITE_CONFIG.facebookUrl;
   public readonly instagramUrl = SITE_CONFIG.instagramUrl;
@@ -35,6 +37,13 @@ export class App {
     { label: 'Reparaciones', route: '/', fragment: 'servicios' },
     { label: 'Contacto', route: '/', fragment: 'contacto' },
   ];
+
+  constructor() {
+    this.syncCatalogRoute(this.router.url);
+    this.router.events
+      .pipe(filter((event): event is NavigationEnd => event instanceof NavigationEnd))
+      .subscribe((event) => this.syncCatalogRoute(event.urlAfterRedirects));
+  }
 
   toggleMenu(): void {
     this.menuOpen.update((open) => !open);
@@ -100,5 +109,10 @@ export class App {
 
   private syncBodyScroll(): void {
     document.body.classList.toggle('nav-open', this.menuOpen());
+  }
+
+  private syncCatalogRoute(url: string): void {
+    const path = url.split(/[#?]/)[0];
+    this.isCatalogRoute.set(['/audifonos', '/cargadores', '/teclados'].includes(path));
   }
 }

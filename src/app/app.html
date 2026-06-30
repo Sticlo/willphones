@@ -1,17 +1,11 @@
 <!-- WILLPHONE'S — Shell layout -->
-<div class="landing-container">
+<div class="landing-container" [class.landing-container--catalog]="isCatalogRoute()">
 
   <!-- ══════ NAVBAR ══════ -->
   <header class="navbar" [class.menu-open]="menuOpen()">
     <div class="navbar-wrapper">
       <a routerLink="/" class="logo" (click)="closeMenu()">
-        <svg class="logo-icon" width="26" height="26" viewBox="0 0 24 24" fill="none">
-          <path d="M17 2H7C5.9 2 5 2.9 5 4v16c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"
-                stroke="#0047E0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M12 18h.01" stroke="#0047E0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M9 6h6" stroke="#0047E0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <span class="logo-text">Willphone's</span>
+        <img src="assets/willphones-logo.png" alt="Willphone's" class="logo-img" width="140" height="40" loading="eager">
       </a>
 
       <div
@@ -74,13 +68,7 @@
 
         <div class="footer-brand">
           <a routerLink="/" class="logo">
-            <svg class="logo-icon" width="26" height="26" viewBox="0 0 24 24" fill="none">
-              <path d="M17 2H7C5.9 2 5 2.9 5 4v16c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"
-                    stroke="#4d87ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M12 18h.01" stroke="#4d87ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M9 6h6" stroke="#4d87ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <span class="logo-text">Willphone's</span>
+            <img src="assets/willphones-logo.png" alt="Willphone's" class="logo-img logo-img--footer" width="140" height="40" loading="eager">
           </a>
           <p class="footer-tagline">Venta al por mayor de accesorios tech y servicio técnico de confianza.</p>
         </div>

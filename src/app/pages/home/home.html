@@ -1,7 +1,8 @@
   <!-- ══════ HERO ══════ -->
   <section id="inicio" class="hero-section">
     <div class="hero-bg" aria-hidden="true"></div>
-    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="hero-glow hero-glow--blue" aria-hidden="true"></div>
+    <div class="hero-glow hero-glow--green" aria-hidden="true"></div>
 
     <div class="hero-inner">
       <div class="hero-content">
@@ -26,7 +27,7 @@
               <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
             </svg>
           </a>
-          <a [href]="whatsappLink()" target="_blank" class="btn btn-white">
+          <a [href]="whatsappLink()" target="_blank" class="btn btn-green btn-lg">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984a9.96 9.96 0 0 0 1.333 4.982L2 22l5.202-1.362a9.927 9.927 0 0 0 4.805 1.246h.005c5.507 0 9.99-4.478 9.99-9.987C22.002 6.478 17.519 2 12.012 2zm4.542 14.09c-.248-.124-1.472-.727-1.7-.81-.227-.083-.393-.124-.559.124-.165.248-.64.81-.785.975-.145.166-.29.187-.539.062a6.793 6.793 0 0 1-2.002-1.233 7.487 7.487 0 0 1-1.385-1.724c-.145-.248-.016-.383.109-.507.112-.111.248-.29.373-.435.124-.145.165-.248.248-.414.083-.166.042-.31-.02-.435-.063-.124-.559-1.347-.766-1.844-.202-.487-.407-.42-.559-.427H8.62c-.166 0-.435.062-.662.31-.228.249-.87.85-.87 2.07 0 1.22.89 2.4 1.013 2.566.124.166 1.752 2.675 4.244 3.748.593.256 1.056.408 1.417.523.596.19 1.138.163 1.567.099.479-.072 1.472-.601 1.679-1.18.207-.58.207-1.077.145-1.18-.062-.104-.228-.166-.476-.29z"/>
             </svg>
@@ -34,21 +35,20 @@
           </a>
         </div>
 
-        <div class="hero-proof">
-          <div class="proof-item">
-            <span class="proof-num">500+</span>
-            <span class="proof-label">Referencias</span>
-          </div>
-          <span class="proof-sep"></span>
-          <div class="proof-item">
-            <span class="proof-num">Desde 6</span>
-            <span class="proof-label">Unidades</span>
-          </div>
-          <span class="proof-sep"></span>
-          <div class="proof-item">
-            <span class="proof-num">Mayorista</span>
-            <span class="proof-label">WhatsApp</span>
-          </div>
+        <p class="hero-tagline">Tecnología · Confianza · Calidad</p>
+      </div>
+
+      <div class="hero-brand">
+        <div class="hero-logo-frame">
+          <img
+            src="assets/willphones-logo.png"
+            alt="Willphone's — tecnología, confianza y calidad"
+            class="hero-logo"
+            width="520"
+            height="403"
+            loading="eager"
+            fetchpriority="high"
+          >
         </div>
       </div>
     </div>
@@ -81,36 +81,8 @@
     </div>
   </div>
 
-  <!-- ══════ STATS BAR ══════ -->
-  <div class="stats-bar">
-    <div class="container">
-      <div class="stats-bar-grid">
-        <div class="stat-block">
-          <span class="stat-big">500+</span>
-          <span class="stat-label">Referencias</span>
-          <span class="stat-desc">Catálogo mayorista para revender</span>
-        </div>
-        <div class="stat-block">
-          <span class="stat-big">Desde 6</span>
-          <span class="stat-label">Unidades</span>
-          <span class="stat-desc">Compra mínima al por mayor</span>
-        </div>
-        <div class="stat-block">
-          <span class="stat-big">B2B</span>
-          <span class="stat-label">Mayorista</span>
-          <span class="stat-desc">Cotización por WhatsApp</span>
-        </div>
-        <div class="stat-block">
-          <span class="stat-big">100%</span>
-          <span class="stat-label">Garantía</span>
-          <span class="stat-desc">En accesorios y reparaciones</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- ══════════════════════════════════════════════════════════
-       EXPLORADOR DE ACCESORIOS  — Interactivo & Educativo
+       CATÁLOGO MAYORISTA
   ══════════════════════════════════════════════════════════ -->
   <section id="accesorios" class="explorer-section">
     <div class="container">
