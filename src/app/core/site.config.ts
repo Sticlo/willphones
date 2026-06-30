@@ -1,6 +1,6 @@
 export const SITE_CONFIG = {
-  whatsappNumber: '+57 300 000 0000',
-  phoneNumber: '+57 300 000 0000',
+  whatsappNumber: '+57 320 499 2024',
+  phoneNumber: '+57 320 499 2024',
   whatsappMessage: "Hola Willphone's! Me interesa comprar accesorios al por mayor. ¿Me pueden enviar catálogo y cotización?",
   wholesaleMinUnits: 6,
   facebookUrl: 'https://facebook.com/willphones',
